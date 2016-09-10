@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F294CBC-847B-4CF6-B42B-085D37AF8AD8}"
+	ProjectSection(SolutionItems) = preProject
+		Integround.Components.Core.nuspec = Integround.Components.Core.nuspec
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integround.Components.Core_net45", "Integround.Components.Core\Integround.Components.Core_net45.csproj", "{B6C69743-E12F-408D-9197-E55EEE3AE16A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6C69743-E12F-408D-9197-E55EEE3AE16A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C69743-E12F-408D-9197-E55EEE3AE16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C69743-E12F-408D-9197-E55EEE3AE16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C69743-E12F-408D-9197-E55EEE3AE16A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
