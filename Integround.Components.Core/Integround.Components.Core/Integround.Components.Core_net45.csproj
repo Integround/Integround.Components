@@ -73,13 +73,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)packages\NuGet.CommandLine.3.4.3\tools\nuget.exe pack $(ProjectPath)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
+  </Target>-->
+  <Target Name="AfterBuild" Condition="'$(Configuration)' == 'Release'">
+    <Exec Command="$(SolutionDir)packages\NuGet.CommandLine.3.4.3\tools\nuget.exe pack $(ProjectPath) -o $(OutDir) -Prop Configuration=Release" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
