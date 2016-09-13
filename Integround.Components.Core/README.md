@@ -1,0 +1,2 @@
+# Integround.Components.Core
+Integround.Components is a set of libraries containing tools for building integration processes. Core library contains the core classes and basic components like xslt & flat file conversions.
