@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integround.Components.Http.HttpInterface_net45", "Integround.Components.Http.HttpInterface\Integround.Components.Http.HttpInterface_net45.csproj", "{EC39A64A-3DEF-4E71-9A60-1FC06530F839}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integround.Components.Http.RestClient_net45", "Integround.Components.Http.RestClient\Integround.Components.Http.RestClient_net45.csproj", "{7FDE6BF8-40B5-463B-9B3D-167EAEE7A752}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DD8F1DB3-0893-4705-A3AB-0549AA661574}"
+	ProjectSection(SolutionItems) = preProject
+		build\build.ps1 = build\build.ps1
+		build\Integround.Components.Http.nuspec = build\Integround.Components.Http.nuspec
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC39A64A-3DEF-4E71-9A60-1FC06530F839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC39A64A-3DEF-4E71-9A60-1FC06530F839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC39A64A-3DEF-4E71-9A60-1FC06530F839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC39A64A-3DEF-4E71-9A60-1FC06530F839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FDE6BF8-40B5-463B-9B3D-167EAEE7A752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FDE6BF8-40B5-463B-9B3D-167EAEE7A752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FDE6BF8-40B5-463B-9B3D-167EAEE7A752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FDE6BF8-40B5-463B-9B3D-167EAEE7A752}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
