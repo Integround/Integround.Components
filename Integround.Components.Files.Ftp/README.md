@@ -1,11 +1,8 @@
 # Integround.Components.Files.Ftp
-**Integround.Components** is a set of libraries containing tools for building integration processes. Files.Ftp library contains client components for communicating with FTP/SFTP servers.
+**Files.Ftp** library contains client components for communicating with FTP/SFTP servers. It is released under the MIT license and is also available as a Nuget package.
 
-Integround.Components.Files.Ftp component is available also as a Nuget package.
+***Note:** these components depend on Rebex File Transfer Pack libraries which require third-party licensing. These dependencies are not included in the repository or in the Nuget package. To use these components you have to include the dependecies to your project yourself.*
 
-**Files.Ftp.FtpClient** component is used to transfer files to/from FTP servers.
+**Integround Components** is a collection of open source integration components to help you build custom integration solutions easily. These components can be used in any .NET application to make it easier to execute many integration-related tasks without writing all code by yourself.
 
-**Files.Ftp.SftpClient** component is used to transfer files to/from SFTP servers.
-
-**NOTE:** This component depends on Rebex File Transfer Pack libraries. These dependencies are not included in the repository or in the Nuget package. To use this component you have to include the dependecies to your project yourself.
 

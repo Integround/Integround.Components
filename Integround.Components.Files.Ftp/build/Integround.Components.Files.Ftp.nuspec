@@ -8,10 +8,14 @@
     <licenseUrl>https://raw.githubusercontent.com/Integround/Integround.Components/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Integround/Integround.Components</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Ftp &quot; Sftp client components for building custom integration processes.</description>
-    <summary>Ftp &quot; Sftp client components for building custom integration processes.</summary>
+    <description>Files.Ftp library contains client components for communicating with FTP/SFTP servers. 
+
+Note: these components depend on Rebex File Transfer Pack libraries which require third-party licensing. These dependencies are not included in the repository or in the Nuget package. To use these components you have to include the dependecies to your project yourself.
+
+Integround Components is a collection of open source integration components to help you build custom integration solutions easily. These components can be used in any .NET application to make it easier to execute many integration-related tasks without writing all code by yourself.</description>
+    <summary>Files.Ftp library contains client components for communicating with FTP/SFTP servers. Note: these components depend on Rebex libraries which require third-party licensing.</summary>
     <language>en-US</language>
-    <tags>integration xml json rest ftp sftp xslt</tags>
+    <tags>ftp sftp client integration xml json rest xslt</tags>
     <dependencies>
       <dependency id="Integround.Components.Core" version="1.0.0.2762" />
     </dependencies>
