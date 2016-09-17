@@ -42,24 +42,27 @@ namespace Integround.Components.Http.HttpInterface
 
         public HttpInterfaceService(IPEndPoint httpEndpoint, IPEndPoint httpsEndpoint, ILogger logger = null)
         {
-            var httpAddress = new Uri(string.Concat("http://", httpEndpoint));
-            var httpsAddress = new Uri(string.Concat("https://", httpsEndpoint));
-
             _serviceHost = new ServiceHost(this);
             _logger = logger;
-
-            // Add Http Interface endpoint:
-            var endpointHttp = _serviceHost.AddServiceEndpoint(typeof(IServiceInterface),
-                GetHttpBinding(),
-                httpAddress);
-
-            var endpointHttps = _serviceHost.AddServiceEndpoint(typeof(IServiceInterface),
-                GetHttpsBinding(),
-                httpsAddress);
-
+            
+            // Add http/https endpoints: 
             var webBehavior = new WebHttpBehavior { FaultExceptionEnabled = true };
-            endpointHttp.EndpointBehaviors.Add(webBehavior);
-            endpointHttps.EndpointBehaviors.Add(webBehavior);
+            if (httpEndpoint != null)
+            {
+                var httpAddress = new Uri(string.Concat("http://", httpEndpoint));
+                var endpointHttp = _serviceHost.AddServiceEndpoint(typeof(IServiceInterface),
+                    GetHttpBinding(),
+                    httpAddress);
+                endpointHttp.EndpointBehaviors.Add(webBehavior);
+            }
+            if (httpsEndpoint != null)
+            {
+                var httpsAddress = new Uri(string.Concat("https://", httpsEndpoint));
+                var endpointHttps = _serviceHost.AddServiceEndpoint(typeof(IServiceInterface),
+                    GetHttpsBinding(),
+                    httpsAddress);
+                endpointHttps.EndpointBehaviors.Add(webBehavior);
+            }
         }
 
         public async Task StartAsync()
