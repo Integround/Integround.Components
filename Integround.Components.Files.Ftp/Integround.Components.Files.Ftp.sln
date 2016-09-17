@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integround.Components.Files.FtpClient_net45", "Integround.Components.Files.FtpClient\Integround.Components.Files.FtpClient_net45.csproj", "{8011E196-7739-4CF0-B74D-CB333063AE5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integround.Components.Files.SftpClient_net45", "Integround.Components.Files.SftpClient\Integround.Components.Files.SftpClient_net45.csproj", "{DE401834-E02C-4636-8699-74FA3492BF8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0E94C83F-F5D6-4E39-9C03-483F8F0C03F5}"
+	ProjectSection(SolutionItems) = preProject
+		build\build.ps1 = build\build.ps1
+		build\Integround.Components.Files.Ftp.nuspec = build\Integround.Components.Files.Ftp.nuspec
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8011E196-7739-4CF0-B74D-CB333063AE5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8011E196-7739-4CF0-B74D-CB333063AE5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8011E196-7739-4CF0-B74D-CB333063AE5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8011E196-7739-4CF0-B74D-CB333063AE5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE401834-E02C-4636-8699-74FA3492BF8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE401834-E02C-4636-8699-74FA3492BF8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE401834-E02C-4636-8699-74FA3492BF8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE401834-E02C-4636-8699-74FA3492BF8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

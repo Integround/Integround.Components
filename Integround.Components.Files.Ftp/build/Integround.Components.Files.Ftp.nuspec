@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Integround.Components.Files.Ftp</id>
+    <version>1.0.0.6310</version>
+    <title>Integround.Components.Files.Ftp</title>
+    <authors>Integround</authors>
+    <licenseUrl>https://raw.githubusercontent.com/Integround/Integround.Components/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Integround/Integround.Components</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Ftp &quot; Sftp client components for building custom integration processes.</description>
+    <summary>Ftp &quot; Sftp client components for building custom integration processes.</summary>
+    <language>en-US</language>
+    <tags>integration xml json rest ftp sftp xslt</tags>
+    <dependencies>
+      <dependency id="Integround.Components.Core" version="1.0.0.2762" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\Integround.Components.Files.FtpClient\bin\Release\Integround.Components.Files.FtpClient.dll" target="lib\net45\Integround.Components.Files.FtpClient.dll" />
+    <file src="..\Integround.Components.Files.SftpClient\bin\Release\Integround.Components.Files.SftpClient.dll" target="lib\net45\Integround.Components.Files.SftpClient.dll" />
+  </files>
+</package>
