@@ -1,10 +1,10 @@
 # Set up variables:
+$Version = "1.0.0"
 $ProductName = "Integround.Components.Log.LogEntries"
 $MsbuildPath = "C:\Program Files (x86)\MSBuild\14.0\Bin"
 $NugetPath = "..\packages\NuGet.CommandLine.3.4.3\tools"
 
 # Generate version numbers:
-$Version = Get-Date -Format "yyyy.MM.dd"
 $Revision = [Math]::Floor((New-TimeSpan -Start (Get-Date).Date -End (Get-Date)).TotalSeconds / 2)
 $FullVersion = "$Version.$Revision"
 

@@ -37,16 +37,16 @@
     <AssemblyOriginatorKeyFile>Integround.Components.Log.LogEntries.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Integround.Components.Core, Version=2016.9.13.39146, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
-      <HintPath>..\packages\Integround.Components.Core.2016.9.13.39146\lib\net45\Integround.Components.Core.dll</HintPath>
+    <Reference Include="Integround.Components.Core, Version=1.0.0.2762, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
+      <HintPath>..\packages\Integround.Components.Core.1.0.0.2762\lib\net45\Integround.Components.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Integround.Components.Core.FlatFile, Version=2016.9.13.39146, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
-      <HintPath>..\packages\Integround.Components.Core.2016.9.13.39146\lib\net45\Integround.Components.Core.FlatFile.dll</HintPath>
+    <Reference Include="Integround.Components.Core.FlatFile, Version=1.0.0.2762, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
+      <HintPath>..\packages\Integround.Components.Core.1.0.0.2762\lib\net45\Integround.Components.Core.FlatFile.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Integround.Components.Core.Xslt, Version=2016.9.13.39146, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
-      <HintPath>..\packages\Integround.Components.Core.2016.9.13.39146\lib\net45\Integround.Components.Core.Xslt.dll</HintPath>
+    <Reference Include="Integround.Components.Core.Xslt, Version=1.0.0.2762, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
+      <HintPath>..\packages\Integround.Components.Core.1.0.0.2762\lib\net45\Integround.Components.Core.Xslt.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
