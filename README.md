@@ -9,7 +9,7 @@ Here's the list of released Integround Components. Many more to come. All these 
 - **Integround.Components.Azure.ServiceBus** : Azure.ServiceBus library contains components for communicating with Azure Service Bus.
 - **Integround.Components.Files.Ftp** : Files.Ftp library contains client components for communicating with FTP/SFTP servers. ***Note:** these components depend on Rebex libraries which require third-party licensing.*
 - **Integround.Components.Http** : Http library contains components for publishing HTTP interfaces and consuming REST services.
-- **Integround.Components.Log.*** : Log libraries contain components for logging messages to various destinations.
+- **Integround.Components.Log.** : Log libraries contain components for logging messages to various destinations.
 
 ## Tutorials
 Coming soon...
