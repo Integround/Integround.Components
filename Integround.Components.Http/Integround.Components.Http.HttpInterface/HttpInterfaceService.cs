@@ -44,7 +44,7 @@ namespace Integround.Components.Http.HttpInterface
         {
             _serviceHost = new ServiceHost(this);
             _logger = logger;
-            
+
             // Add http/https endpoints: 
             var webBehavior = new WebHttpBehavior { FaultExceptionEnabled = true };
             if (httpEndpoint != null)
@@ -105,7 +105,9 @@ namespace Integround.Components.Http.HttpInterface
         public async Task<Stream> Get(string operation)
         {
             // Get the process that is registered to this endpoint and execute it.
-            var endpointSetting = _registeredEndpoints.FirstOrDefault(x => (x.Value.Method == HttpMethod.Get) && string.Equals(x.Value.Path, operation));
+            var endpointSetting = _registeredEndpoints.FirstOrDefault(x => 
+                (x.Value.Method == HttpMethod.Get) && 
+                string.Equals(x.Value.Path, operation, StringComparison.InvariantCultureIgnoreCase));
 
             if (endpointSetting.Equals(default(KeyValuePair<Guid, HttpEndpoinConfiguration>)))
                 throw new Exception($"GET requests to operation '{operation}' are not allowed.");
@@ -180,7 +182,9 @@ namespace Integround.Components.Http.HttpInterface
         public async Task<Stream> Post(string operation, Stream contents)
         {
             // Get the process that is registered to this endpoint and execute it.
-            var endpointSetting = _registeredEndpoints.FirstOrDefault(x => (x.Value.Method == HttpMethod.Post) && string.Equals(x.Value.Path, operation));
+            var endpointSetting = _registeredEndpoints.FirstOrDefault(x => 
+                (x.Value.Method == HttpMethod.Post) &&
+                string.Equals(x.Value.Path, operation, StringComparison.InvariantCultureIgnoreCase));
 
             if (endpointSetting.Equals(default(KeyValuePair<Guid, HttpEndpoinConfiguration>)))
                 throw new Exception($"POST requests to operation '{operation}' are not allowed.");
@@ -278,7 +282,10 @@ namespace Integround.Components.Http.HttpInterface
                 // Execute the process:
                 var requestMessage = Message.CreateFromObject(request);
                 var responseMessage = await endpoint.Process.CallAsync(requestMessage);
-                var response = Message.ExtractObject<Response>(responseMessage);
+
+                var response = (responseMessage != null) && (responseMessage.ContentStream != null)
+                    ? Message.ExtractObject<Response>(responseMessage)
+                    : null;
 
                 return BuildSuccessResponse(response, acceptHeader, acceptEncoding);
             }
