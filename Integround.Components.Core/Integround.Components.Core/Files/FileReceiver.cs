@@ -55,7 +55,7 @@ namespace Integround.Components.Files
             }
             catch (Exception ex)
             {
-                _logger?.LogError($"Reading files from path '{_path}' using filemask '{_fileMask}' was unsuccessful.", ex);
+                _logger?.Error($"Reading files from path '{_path}' using filemask '{_fileMask}' was unsuccessful.", ex);
             }
 
             _executing = false;
