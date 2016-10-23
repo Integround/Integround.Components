@@ -4,6 +4,9 @@ namespace Integround.Components.Log
 {
     public interface IMessageLogStore
     {
-        Task AddAsync<T>(T obj);
+        LoggingLevel LoggingLevel { get; }
+
+        Task<string> AddAsync<T>(T obj);
+        Task<string> AddDebugAsync<T>(T obj);
     }
 }

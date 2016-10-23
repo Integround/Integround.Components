@@ -1,5 +1,5 @@
 # Set up variables:
-$Version = "1.3.0"
+$Version = "1.4.0"
 $ProductName = "Integround.Components.Core"
 $MsbuildPath = "C:\Program Files (x86)\MSBuild\14.0\Bin"
 $NugetPath = "..\packages\NuGet.CommandLine.3.4.3\tools"
