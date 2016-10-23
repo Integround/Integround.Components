@@ -56,6 +56,7 @@
     <Compile Include="Core\IScheduler.cs" />
     <Compile Include="Core\IProcess.cs" />
     <Compile Include="Log\AggregateLogger.cs" />
+    <Compile Include="Log\IMessageLogStore.cs" />
     <Compile Include="Log\LoggingLevel.cs" />
     <Compile Include="Log\TraceLogger.cs" />
     <Compile Include="Http\Authentication.cs" />

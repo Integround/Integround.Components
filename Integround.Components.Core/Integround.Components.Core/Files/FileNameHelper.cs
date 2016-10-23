@@ -12,6 +12,8 @@ namespace Integround.Components.Files
 
             // Replace the macros with corresponding strings:
             fileName = fileName.Replace(@"%NewGuid%", Guid.NewGuid().ToString("D"));
+            fileName = fileName.Replace(@"%Date%", DateTime.Now.ToString("yyyy-MM-dd"));
+            fileName = fileName.Replace(@"%Time%", DateTime.Now.ToString("HHmmss"));
             fileName = fileName.Replace(@"%TimestampUtc%", DateTime.UtcNow.ToString("yyyy-MM-ddTHHmmss"));
 
             return fileName;
