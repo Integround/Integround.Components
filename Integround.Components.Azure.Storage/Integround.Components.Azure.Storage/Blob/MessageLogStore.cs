@@ -7,34 +7,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Xml.Serialization;
 
 namespace Integround.Components.Azure.Storage.Blob
 {
     public class MessageLogStore : IMessageLogStore
     {
-        private const string FileNameFormat = "%Date%/%Time%_%NewGuid%";
-        private const int RetentionTimeInDays = 14;
-        private const int CleanupIntervalInMinutesDefault = 24 * 60;
+        public const string FileNameFormat = "%Date%/%Time%_%NewGuid%";
+        private const int MaxMessageAgeInDays = 14;
 
         private readonly CloudBlobClient _blobClient;
         private readonly string _path;
-        private readonly string _fileNameFormat;
-        private readonly int _retentionTimeInDays;
         private readonly ILogger _log;
-        private readonly Timer _timer;
-
-        public int CleanupIntervalInMinutes { get; set; }
+        private bool _executing;
 
         public LoggingLevel LoggingLevel { get; }
 
         public MessageLogStore(string connectionString, string path,
-            string fileNameFormat = FileNameFormat,
-            int retentionTimeInDays = RetentionTimeInDays,
             LoggingLevel level = LoggingLevel.Info,
+            IScheduler scheduler = null,
             ILogger log = null)
-            : this(null, path, fileNameFormat, retentionTimeInDays, CleanupIntervalInMinutesDefault, level, log)
+            : this(default(CloudBlobClient), path, level, scheduler, log)
         {
             var storageAccount = CloudStorageAccount.Parse(connectionString);
             _blobClient = storageAccount.CreateCloudBlobClient();
@@ -44,48 +37,50 @@ namespace Integround.Components.Azure.Storage.Blob
         /// This constructor is for unit testing purposes only
         /// </summary>
         protected MessageLogStore(CloudBlobClient blobClient, string path,
-            string fileNameFormat = FileNameFormat,
-            int retentionTimeInDays = 0,
-            int cleanupIntervalInMinutes = CleanupIntervalInMinutesDefault,
             LoggingLevel level = LoggingLevel.Info,
+            IScheduler scheduler = null,
             ILogger log = null)
         {
             _path = path;
-            _fileNameFormat = fileNameFormat;
-            _retentionTimeInDays = retentionTimeInDays;
             _log = log;
             _blobClient = blobClient;
-
             LoggingLevel = level;
-
-            // TODO: Implement a better way for clean-up
-
-            // If there is a retention time defined, start the timer for clean up:
-            if (retentionTimeInDays > 0)
+            
+            if (scheduler != null)
             {
-                CleanupIntervalInMinutes = cleanupIntervalInMinutes;
-
-                _timer = new Timer(CleanupIntervalInMinutes * 60 * 1000);
-                _timer.Elapsed += _timer_Elapsed;
-                _timer.Start();
+                scheduler.Trigger += Scheduler_Trigger;
             }
+        }
+
+        private async void Scheduler_Trigger(object sender, MessageEventArgs e)
+        {
+            if (_executing)
+                return;
+
+            _executing = true;
+            
+            await CleanUp();
+
+            _executing = false;
         }
 
         public async Task<string> AddAsync<T>(T obj)
         {
+            return await AddAsync(obj, null);
+        }
+
+        public async Task<string> AddAsync<T>(T obj, string fileName)
+        {
             // TODO: Implement retry
-
-            if (_retentionTimeInDays <= 0)
-                return null;
-
-            var fileName = FileNameHelper.PopulateFileNameMacros(_fileNameFormat);
+            
+            var blobName = FileNameHelper.PopulateFileNameMacros(!string.IsNullOrWhiteSpace(fileName) ? fileName : FileNameFormat);
 
             try
             {
                 var container = _blobClient.GetContainerReference(_path);
                 await container.CreateIfNotExistsAsync();
 
-                var blob = container.GetBlockBlobReference(fileName);
+                var blob = container.GetBlockBlobReference(blobName);
 
                 var message = obj as Message;
                 if (message != null)
@@ -93,10 +88,13 @@ namespace Integround.Components.Azure.Storage.Blob
                     // Save the message contents:
                     if (message.ContentStream != null)
                     {
+                        var position = message.ContentStream.Position;
+
+                        message.ContentStream.Position = 0;
                         await blob.UploadFromStreamAsync(message.ContentStream);
 
-                        // Rewind the stream:
-                        message.ContentStream.Position = 0;
+                        // Restore the position:
+                        message.ContentStream.Position = position;
                     }
                     else
                     {
@@ -127,27 +125,33 @@ namespace Integround.Components.Azure.Storage.Blob
             }
             catch (Exception ex)
             {
-                _log.Error($"Adding object to the message log store failed (path '{_path}', filename '{fileName}')", ex);
+                _log.Error($"Adding object to the message log store failed (path '{_path}', filename '{blobName}')", ex);
             }
 
-            return fileName;
+            return blobName;
         }
-        
+
         public async Task<string> AddDebugAsync<T>(T obj)
+        {
+            return await AddDebugAsync(obj, null);
+        }
+
+        public async Task<string> AddDebugAsync<T>(T obj, string fileName)
         {
             if (LoggingLevel > LoggingLevel.Debug)
                 return null;
 
-            return await AddAsync(obj);
+            return await AddAsync(obj, fileName);
         }
 
-        public async Task DeleteOldMessagesAsync()
+        public async Task<int> CleanUp(int maxMessageAgeInDays = MaxMessageAgeInDays)
         {
             var container = _blobClient.GetContainerReference(_path);
             if (!await container.ExistsAsync())
-                return;
+                return 0;
 
             var blobs = container.ListBlobs();
+            var tasks = new List<Task>();
             foreach (var blob in blobs.OfType<CloudBlobDirectory>())
             {
                 var prefix = (blob.Prefix ?? string.Empty).Split('/').First();
@@ -157,38 +161,22 @@ namespace Integround.Components.Azure.Storage.Blob
                     continue;
 
                 // Check if the directory is too old:
-                if (date.AddDays(_retentionTimeInDays) >= DateTime.UtcNow.Date)
+                if (date.AddDays(maxMessageAgeInDays) >= DateTime.UtcNow.Date)
                     continue;
 
                 // Start removing the blobs:
-                var tasks = new List<Task>();
                 var oldBlobs = container.ListBlobs(prefix, true).ToArray();
-                _log?.Debug($"Start deleting {oldBlobs.Length} messages with the prefix '{prefix}'.");
+                tasks.AddRange(oldBlobs.Select(x => ((CloudBlockBlob)x).DeleteIfExistsAsync()));
 
-                foreach (var oldBlob in oldBlobs)
-                {
-                    // Otherwise delete the directory blob, it's too old:   
-                    tasks.Add(((CloudBlockBlob)oldBlob).DeleteIfExistsAsync());
-                }
-                await Task.WhenAll(tasks);
+                _log?.Debug($"Deleting {oldBlobs.Length} messages from '{_path}/{prefix}'.");
+            }
 
-                _log?.Debug($"Finished deleting {tasks.Count} messages with the prefix '{prefix}'.");
-            }
-        }
+            // Wait until blobs are deleted:
+            await Task.WhenAll(tasks);
 
-        private async void _timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            _timer.Stop();
-            try
-            {
-                await DeleteOldMessagesAsync();
-            }
-            catch (Exception ex)
-            {
-                _log?.Error("Integround.Components.Azure.Storage.MessageLogBlobStorage: Deleting old messages failed.", ex);
-            }
-            _timer.Interval = CleanupIntervalInMinutes;
-            _timer.Start();
+            _log?.Debug($"Finished deleting {tasks.Count} messages from '{_path}'.");
+
+            return tasks.Count;
         }
     }
 }
