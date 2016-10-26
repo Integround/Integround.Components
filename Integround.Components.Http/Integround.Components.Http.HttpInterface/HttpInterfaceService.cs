@@ -283,7 +283,7 @@ namespace Integround.Components.Http.HttpInterface
                 var requestMessage = Message.CreateFromObject(request);
                 var responseMessage = await endpoint.Process.CallAsync(requestMessage);
 
-                var response = (responseMessage != null) && (responseMessage.ContentStream != null)
+                var response = responseMessage?.ContentStream != null
                     ? Message.ExtractObject<Response>(responseMessage)
                     : null;
 
@@ -380,14 +380,14 @@ namespace Integround.Components.Http.HttpInterface
                         }
                         catch (FormatException ex)
                         {
-                            _logger.LogWarning("Client credentials were incorrectly encoded to base64 format", ex);
+                            _logger.Warning("Client credentials were incorrectly encoded to base64 format", ex);
                             throw new AuthenticationException("Username and password are required to be in Authorization header in base64 encoded format");
                         }
 
                         var credentials = credentialsStr.Split(':');
                         if (credentials.Length != 2)
                         {
-                            _logger.LogWarning("Client didn't provide credentials in a correct 'username:password' format");
+                            _logger.Warning("Client didn't provide credentials in a correct 'username:password' format");
                             throw new AuthenticationException("Username or password was incorrect");
                         }
 
@@ -399,13 +399,13 @@ namespace Integround.Components.Http.HttpInterface
                         if (!(string.Equals(endpoint.Authentication.Credentials.UserName, username) &&
                             string.Equals(endpoint.Authentication.Credentials.Password, password)))
                         {
-                            _logger.LogWarning("Client provided incorrect username or password");
+                            _logger.Warning("Client provided incorrect username or password");
                             throw new AuthenticationException("Username or password was incorrect");
                         }
                     }
                     else
                     {
-                        _logger.LogWarning("Client didn't provide credentials for basic authenticated REST interface");
+                        _logger.Warning("Client didn't provide credentials for basic authenticated REST interface");
                         throw new AuthenticationException("This service requires basic authentication credentials in Authorization header");
                     }
                     break;
@@ -415,13 +415,13 @@ namespace Integround.Components.Http.HttpInterface
                         var bearerToken = authorizationHeader.Substring(7); // Strip the "Bearer " string from auth header
                         if (!string.Equals(bearerToken, endpoint.Authentication.ApiToken))
                         {
-                            _logger.LogWarning("Client didn't provide correct bearer token");
+                            _logger.Warning("Client didn't provide correct bearer token");
                             throw new AuthenticationException("Bearer token was incorrect");
                         }
                     }
                     else
                     {
-                        _logger.LogWarning("Client didn't provide authorization header");
+                        _logger.Warning("Client didn't provide authorization header");
                         throw new AuthenticationException("This service requires bearer Authorization header");
                     }
                     break;

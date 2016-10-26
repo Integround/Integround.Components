@@ -1,5 +1,5 @@
 # Set up variables:
-$Version =  "1.0.1"
+$Version =  "1.1.0"
 $ProductName = "Integround.Components.Http"
 $MsbuildPath = "C:\Program Files (x86)\MSBuild\14.0\Bin"
 $NugetPath = "..\packages\NuGet.CommandLine.3.4.3\tools"

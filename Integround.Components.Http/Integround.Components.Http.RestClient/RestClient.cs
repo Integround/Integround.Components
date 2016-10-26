@@ -308,7 +308,7 @@ namespace Integround.Components.Http.RestClient
                     // If this is not the last retry, log a warning.
                     if (retries <= retryCount)
                     {
-                        _logger?.LogWarning($"Executing the HTTP {method} request failed. Retrying {retries}/{retryCount} in {sleepTime} ms.");
+                        _logger?.Warning($"Executing the HTTP {method} request failed. Retrying {retries}/{retryCount} in {sleepTime} ms.");
                     }
                     // Otherwise, throw an exception
                     else if (retryCount == 0)
