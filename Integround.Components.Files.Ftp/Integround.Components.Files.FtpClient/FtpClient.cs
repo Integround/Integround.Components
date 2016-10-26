@@ -58,7 +58,7 @@ namespace Integround.Components.Files.FtpClient
                     // If this is not the last retry, log a warning.
                     if (retries <= retryCount)
                     {
-                        _logger?.LogWarning($"Reading the file '{fullPath}' failed. Retrying {retries}/{retryCount} in {sleepTime} ms.");
+                        _logger?.Warning($"Reading the file '{fullPath}' failed. Retrying {retries}/{retryCount} in {sleepTime} ms.");
                     }
                     // Otherwise, throw an exception
                     else if (retryCount == 0)
@@ -176,7 +176,7 @@ namespace Integround.Components.Files.FtpClient
                     // If this is not the last retry, log a warning.
                     if (retries <= retryCount)
                     {
-                        _logger?.LogWarning($"Moving the file '{fullPath}' failed. Retrying {retries}/{retryCount} in {sleepTime} ms.");
+                        _logger?.Warning($"Moving the file '{fullPath}' failed. Retrying {retries}/{retryCount} in {sleepTime} ms.");
                     }
                     // Otherwise, throw an exception
                     else if (retryCount == 0)
