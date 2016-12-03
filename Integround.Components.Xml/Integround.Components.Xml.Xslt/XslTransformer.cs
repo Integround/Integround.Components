@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
+using Integround.Components.Core;
 
-namespace Integround.Components.Core.Xslt
+namespace Integround.Components.Xml.Xslt
 {
     public class XslTransformer
     {

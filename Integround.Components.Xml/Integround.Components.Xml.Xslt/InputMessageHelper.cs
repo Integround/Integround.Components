@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.XPath;
+using Integround.Components.Core;
 
-namespace Integround.Components.Core.Xslt
+namespace Integround.Components.Xml.Xslt
 {
     internal class InputMessageHelper
     {

@@ -7,10 +7,11 @@ using System.Security;
 using System.Text;
 using System.Xml;
 using System.Xml.Schema;
-using Integround.Components.Core.FlatFile.Enums;
-using Integround.Components.Core.FlatFile.Models;
+using Integround.Components.Core;
+using Integround.Components.Xml.FlatFile.Enums;
+using Integround.Components.Xml.FlatFile.Models;
 
-namespace Integround.Components.Core.FlatFile
+namespace Integround.Components.Xml.FlatFile
 {
     public class FlatFileConverter
     {

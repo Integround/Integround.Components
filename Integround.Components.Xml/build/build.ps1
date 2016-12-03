@@ -1,6 +1,6 @@
 # Set up variables:
 $Version = "1.6.0"
-$ProductName = "Integround.Components.Core"
+$ProductName = "Integround.Components.Xml"
 $MsbuildPath = "C:\Program Files (x86)\MSBuild\14.0\Bin"
 $NugetPath = "..\packages\NuGet.CommandLine.3.4.3\tools"
 
@@ -9,14 +9,14 @@ $Revision = [Math]::Floor((New-TimeSpan -Start (Get-Date).Date -End (Get-Date)).
 $FullVersion = "$Version.$Revision"
 
 # Set the assembly version numbers:
-$files = "..\Integround.Components.Core\Properties\AssemblyInfo.cs"
+$files = "..\Integround.Components.Xml.FlatFile\Properties\AssemblyInfo.cs", "..\Integround.Components.Xml.Xslt\Properties\AssemblyInfo.cs"
 ForEach ($file In $files) 
 {
 	(Get-Content ($file)) -replace 'Version\(".*"\)', "Version(`"$FullVersion`")" | Out-File $file
 }
 
 # Set nuget version:
-$nugetConfiguration = ".\Integround.Components.Core.nuspec"
+$nugetConfiguration = ".\Integround.Components.Xml.nuspec"
 (Get-Content $nugetConfiguration) -replace '<version>.*</version>', "<version>$FullVersion</version>" | Out-File $nugetConfiguration
 
 # Build the solution in release mode:

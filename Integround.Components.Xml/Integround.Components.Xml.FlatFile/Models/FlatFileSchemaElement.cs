@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Integround.Components.Core.FlatFile.Enums;
+using Integround.Components.Xml.FlatFile.Enums;
 using System.Text;
 
-namespace Integround.Components.Core.FlatFile.Models
+namespace Integround.Components.Xml.FlatFile.Models
 {
     public class FlatFileSchemaElement
     {

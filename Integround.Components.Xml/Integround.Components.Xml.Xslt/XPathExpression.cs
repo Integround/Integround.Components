@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
+using Integround.Components.Core;
 
-namespace Integround.Components.Core.Xslt
+namespace Integround.Components.Xml.Xslt
 {
     public class XPathExpression
     {

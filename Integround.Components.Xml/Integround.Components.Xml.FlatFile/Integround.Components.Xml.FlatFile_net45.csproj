@@ -7,8 +7,8 @@
     <ProjectGuid>{7D8EF77A-DBAD-461A-924F-144D375DF46B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Integround.Components.Core.FlatFile</RootNamespace>
-    <AssemblyName>Integround.Components.Core.FlatFile</AssemblyName>
+    <RootNamespace>Integround.Components.Xml.FlatFile</RootNamespace>
+    <AssemblyName>Integround.Components.Xml.FlatFile</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -34,9 +34,13 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Integround.Components.Core.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Integround.Components.Xml.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Integround.Components.Core, Version=1.6.0.33659, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
+      <HintPath>..\packages\Integround.Components.Core.1.6.0.33659\lib\net45\Integround.Components.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,13 +60,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Integround.Components.Core.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Integround.Components.Core\Integround.Components.Core_net45.csproj">
-      <Project>{b6c69743-e12f-408d-9197-e55eee3ae16a}</Project>
-      <Name>Integround.Components.Core_net45</Name>
-    </ProjectReference>
+    <None Include="Integround.Components.Xml.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

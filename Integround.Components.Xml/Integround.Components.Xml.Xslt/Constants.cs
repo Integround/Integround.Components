@@ -1,4 +1,4 @@
-﻿namespace Integround.Components.Core.Xslt
+﻿namespace Integround.Components.Xml.Xslt
 {
     internal class Constants
     {
