@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Integround.Components.Azure.Storage</RootNamespace>
     <AssemblyName>Integround.Components.Azure.Storage</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,16 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Integround.Components.Core, Version=1.5.0.42797, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
-      <HintPath>..\packages\Integround.Components.Core.1.5.0.42797\lib\net45\Integround.Components.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Integround.Components.Core.FlatFile, Version=1.5.0.42797, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
-      <HintPath>..\packages\Integround.Components.Core.1.5.0.42797\lib\net45\Integround.Components.Core.FlatFile.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Integround.Components.Core.Xslt, Version=1.5.0.42797, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
-      <HintPath>..\packages\Integround.Components.Core.1.5.0.42797\lib\net45\Integround.Components.Core.Xslt.dll</HintPath>
+    <Reference Include="Integround.Components.Core, Version=1.6.0.33659, Culture=neutral, PublicKeyToken=f6f5c3eed58d1f98, processorArchitecture=MSIL">
+      <HintPath>..\packages\Integround.Components.Core.1.6.0.33659\lib\net45\Integround.Components.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

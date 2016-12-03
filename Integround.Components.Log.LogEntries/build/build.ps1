@@ -1,5 +1,5 @@
 # Set up variables:
-$Version = "1.1.0"
+$Version = "1.1.1"
 $ProductName = "Integround.Components.Log.LogEntries"
 $MsbuildPath = "C:\Program Files (x86)\MSBuild\14.0\Bin"
 $NugetPath = "..\packages\NuGet.CommandLine.3.4.3\tools"

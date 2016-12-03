@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using Integround.Components.Core;
 using Microsoft.ServiceBus.Messaging;
@@ -30,6 +31,7 @@ namespace Integround.Components.Azure.ServiceBus.Queue
             {
                 var msg = new Message
                 {
+                    Metadata = new Dictionary<string, string> {["Path"] = _path },
                     Properties = new ConcurrentDictionary<string, string> {["Path"] = _path }
                 };
 
@@ -40,7 +42,7 @@ namespace Integround.Components.Azure.ServiceBus.Queue
                     {
                         msg.ContentStream = new MemoryStream();
                         await msgStream.CopyToAsync(msg.ContentStream);
-                        
+
                         // Rewind the stream:
                         msg.ContentStream.Position = 0;
                     }
